@@ -21,7 +21,7 @@ public class User{
     private long roleId;
     @Column(name = "NAME")
     private String name;
-    @Column(name = "PHONE_NUMER")
+    @Column(name = "PHONE_NUMBER")
     private String phoneNumber;
     @Column(name = "ADDRESS")
     private String address;
