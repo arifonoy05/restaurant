@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class CommonResponse {
-    private int code;
-    private String message;
+    private int code = 500;
+    private String message = "Error occurred!";
 }

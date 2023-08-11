@@ -1,6 +1,11 @@
 package com.project.restaurant.dto;
 
+import lombok.Data;
+import org.springframework.lang.Nullable;
+
+@Data
 public class RestaurantDTO {
+    @Nullable
     private long id;
     private String name;
     private String foundingYear;
