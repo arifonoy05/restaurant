@@ -5,7 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Table(name = "ROLE")
+import java.sql.Timestamp;
+
+@Table(name = "ROLES")
 @Entity
 @Data
 @AllArgsConstructor
@@ -15,4 +17,14 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private long id;
+    private String name;
+    @Column(name = "CREATED_AT")
+    private Timestamp createdAt;
+    @Column(name = "UPDATED_AT")
+    private Timestamp updatedAt;
+    @Column(name = "CREATED_BY")
+    private long createdBy;
+    @Column(name = "UPDATED_BY")
+    private long updatedBy;
+
 }
