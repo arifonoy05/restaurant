@@ -17,7 +17,7 @@ function FeaturesContent(){
                 {/* Authentication*/}
               <h2 id="feature1">Authentication</h2>
                 <p>
-                   JWT based Authentication logic is present in <span className="badge mt-0 mb-0 badge-ghost">/app/auth.js</span>. In the file you can see we are adding bearer token in header for every request. Every routes under <span className="badge mt-0 mb-0 badge-ghost">/routes/</span> folder will need authentication. For public routes like login, register you will have to add routes in <span className="badge mt-0 mb-0 badge-ghost">App.js</span> file and also include the path in PUBLIC_ROUTES variable under <span className="badge mt-0 mb-0 badge-ghost">/app/auth.js</span> file so that auto redirect to login page is not triggered.
+                   JWT based Authentication logic is present in <span className="badge mt-0 mb-0 badge-ghost">/auth.js</span>. In the file you can see we are adding bearer token in header for every request. Every routes under <span className="badge mt-0 mb-0 badge-ghost">/routes/</span> folder will need authentication. For public routes like login, register you will have to add routes in <span className="badge mt-0 mb-0 badge-ghost">App.js</span> file and also include the path in PUBLIC_ROUTES variable under <span className="badge mt-0 mb-0 badge-ghost">/auth.js</span> file so that auto redirect to login page is not triggered.
                    
                 </p>
 
@@ -40,7 +40,7 @@ function FeaturesContent(){
                 <ul className='mt-0'>
                         <li>Create Page inside <span className="badge mt-0 mb-0 badge-ghost">/pages</span> folder</li>
                         <li>Go to <span className="badge mt-0 mb-0 badge-ghost">App.js</span> and import the component and add its path</li>
-                        <li>Add your new route path in <span className="badge mt-0 mb-0 badge-ghost">/app/auth.js</span> file under PUBLIC_ROUTES variable, this will allow the page to open without login.</li>
+                        <li>Add your new route path in <span className="badge mt-0 mb-0 badge-ghost">/auth.js</span> file under PUBLIC_ROUTES variable, this will allow the page to open without login.</li>
                 </ul>
 
                 <p className='mt-4'>All <span className='font-semibold'>protected routes</span> are present in <span className="badge mt-0 mb-0 badge-ghost">/routes/sidebar.js</span> file</p>
