@@ -2,10 +2,8 @@ package com.project.restaurant.restController;
 
 import com.project.restaurant.dto.RestaurantDTO;
 import com.project.restaurant.service.RestaurantService;
-import com.project.restaurant.util.enums.CommonResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

@@ -16,15 +16,15 @@ public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    private long id;
+    private Long id;
     private String name;
     @Column(name = "CREATED_AT")
     private Timestamp createdAt;
     @Column(name = "UPDATED_AT")
     private Timestamp updatedAt;
     @Column(name = "CREATED_BY")
-    private long createdBy;
+    private Long createdBy;
     @Column(name = "UPDATED_BY")
-    private long updatedBy;
+    private Long updatedBy;
 
 }

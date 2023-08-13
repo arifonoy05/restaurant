@@ -4,6 +4,7 @@ import { lazy } from 'react'
 
 const Dashboard = lazy(() => import('../pages/protected/Dashboard'))
 const Restaurants = lazy(() => import('../pages/protected/Restaurants'))
+const FoodCategory = lazy(() => import('../pages/protected/FoodCategory'))
 
 
 const Welcome = lazy(() => import('../pages/protected/Welcome'))
@@ -26,6 +27,10 @@ const routes = [
   {
     path: '/restaurants', // the url
     component: Restaurants, // view rendered
+  },
+  {
+    path: '/food-category', // the url
+    component: FoodCategory, // view rendered
   },
   {
     path: '/dashboard', // the url

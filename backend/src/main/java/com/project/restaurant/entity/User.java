@@ -16,9 +16,9 @@ public class User{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    private long id;
+    private Long id;
     @Column(name = "ROLE_ID")
-    private long roleId;
+    private Long roleId;
     @Column(name = "NAME")
     private String name;
     @Column(name = "PHONE_NUMBER")
@@ -32,7 +32,7 @@ public class User{
     @Column(name = "UPDATED_AT")
     private Timestamp updatedAt;
     @Column(name = "CREATED_BY")
-    private long createdBy;
+    private Long createdBy;
     @Column(name = "UPDATED_BY")
-    private long updatedBy;
+    private Long updatedBy;
 }

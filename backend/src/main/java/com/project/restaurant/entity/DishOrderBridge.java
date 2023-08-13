@@ -16,18 +16,18 @@ public class DishOrderBridge {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    private long id;
+    private Long id;
     @Column(name = "DISH_ID")
-    public long dishId;
+    public Long dishId;
     @Column(name = "ORDER_ID")
-    public long orderId;
+    public Long orderId;
     @Column(name = "CREATED_AT")
     private Timestamp createdAt;
     @Column(name = "UPDATED_AT")
     private Timestamp updatedAt;
     @Column(name = "CREATED_BY")
-    private long createdBy;
+    private Long createdBy;
     @Column(name = "UPDATED_BY")
-    private long updatedBy;
+    private Long updatedBy;
 
 }

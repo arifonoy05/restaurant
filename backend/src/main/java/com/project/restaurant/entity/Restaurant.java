@@ -16,7 +16,7 @@ public class Restaurant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    private long id;
+    private Long id;
     @Column(name = "NAME")
     private String name;
     @Column(name = "FOUNDING_YEAR")
@@ -46,7 +46,7 @@ public class Restaurant {
     @Column(name = "UPDATED_AT")
     private Timestamp updatedAt;
     @Column(name = "CREATED_BY")
-    private long createdBy;
+    private Long createdBy;
     @Column(name = "UPDATED_BY")
-    private long updatedBy;
+    private Long updatedBy;
 }

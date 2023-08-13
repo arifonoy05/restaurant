@@ -3,8 +3,15 @@ module.exports = Object.freeze({
     MODAL_BODY_TYPES: {
         USER_DETAIL: "USER_DETAIL",
         LEAD_ADD_NEW: "LEAD_ADD_NEW",
+
         CONFIRMATION: "CONFIRMATION",
+
         RESTAURANT_EDIT: "RESTAURANT_EDIT",
+        RESTAURANT_ADD: "RESTAURANT_ADD",
+
+        FOOD_CATEGORY_ADD: "FOOD_CATEGORY_ADD",
+        FOOD_CATEGORY_EDIT: "FOOD_CATEGORY_EDIT",
+
         DEFAULT: "",
     },
 
@@ -15,6 +22,9 @@ module.exports = Object.freeze({
 
     CONFIRMATION_MODAL_CLOSE_TYPES: {
         LEAD_DELETE: "LEAD_DELETE",
+
         RESTAURANT_DELETE: "RESTAURANT_DELETE",
+
+        FOOD_CATEGORY_DELETE: "FOOD_CATEGORY_DELETE",
     },
 });

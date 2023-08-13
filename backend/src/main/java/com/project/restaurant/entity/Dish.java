@@ -16,9 +16,9 @@ public class Dish {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    private long id;
+    private Long id;
     @Column(name = "CATEGORY_ID")
-    private long categoryId;
+    private Long categoryId;
     @Column(name = "NAME")
     private String name;
     @Column(name = "DESCRIPTION")
@@ -36,8 +36,8 @@ public class Dish {
     @Column(name = "UPDATED_AT")
     private Timestamp updatedAt;
     @Column(name = "CREATED_BY")
-    private long createdBy;
+    private Long createdBy;
     @Column(name = "UPDATED_BY")
-    private long updatedBy;
+    private Long updatedBy;
 
 }

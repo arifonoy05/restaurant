@@ -1,4 +1,9 @@
 package com.project.restaurant.respository;
 
-public interface FoodCategoryRepository {
+import com.project.restaurant.entity.FoodCategory;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface FoodCategoryRepository extends JpaRepository<FoodCategory, Long>
+{
+
 }

@@ -2,34 +2,31 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux"
 import { openModal } from "../common/modalSlice"
 import TitleCard from "../../components/Cards/TitleCard"
+import { getRestaurantContent } from './restaurantSlice';
 
 import { MODAL_BODY_TYPES, CONFIRMATION_MODAL_CLOSE_TYPES } from '../../utils/globalConstantUtil'
 
-const Restaurants = () => {
-    const url = 'http://localhost:8080/api/restaurants/list';
-    const [response, setResponse] = useState([]);
-
-    useEffect(() => {
-        callYourAPI()
-    }, []); // Makes the useEffect independent.
-
-    useEffect(() => {
-        callYourAPI()
-    }, [response]); // Makes the useEffect independent.
-
-
-
-    function callYourAPI() {
-        fetch(url)
-            .then(response => {
-                return response.json()
-            })
-            .then(data => {
-                setResponse(data)
-            })
-    };
-
+const TopSideButtons = () => {
     const dispatch = useDispatch()
+    const openAddNewRestaurantModal = () => {
+        dispatch(openModal({ title: "Add New Restaurant", bodyType: MODAL_BODY_TYPES.RESTAURANT_ADD }))
+    }
+
+    return (
+        <div className="inline-block float-right">
+            <button className="btn px-6 btn-sm normal-case btn-primary" onClick={() => openAddNewRestaurantModal()}>Add New</button>
+        </div>
+    )
+}
+
+const Restaurants = () => {
+
+    const { restaurant } = useSelector(state => state.restaurant)
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(getRestaurantContent())
+    }, [])
 
     const openEditRestaurantModal = (item) => {
         dispatch(openModal({ title: "Edit Restaurant", bodyType: MODAL_BODY_TYPES.RESTAURANT_EDIT, extraObject: item }))
@@ -43,7 +40,7 @@ const Restaurants = () => {
 
     // const tableData = response.sort((a,b) => a.id > b.id ? 1 : -1 )
 
-    const DisplayData = response.sort((a, b) => a.id > b.id ? 1 : -1).map(
+    const DisplayData = restaurant.sort((a, b) => a.id > b.id ? 1 : -1).map(
         (item) => {
             return (
                 <tr key={item.id}>
@@ -72,7 +69,7 @@ const Restaurants = () => {
 
     return (
         <>
-            <TitleCard title="List of Restaurants" topMargin="mt-2">
+            <TitleCard title="List of Restaurants" topMargin="mt-2" TopSideButtons={<TopSideButtons />}>
                 <div className="overflow-x-auto">
                     <table className="table min-w-full ">
                         {/* head */}

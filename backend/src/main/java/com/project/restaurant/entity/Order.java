@@ -18,11 +18,11 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    private long id;
+    private Long id;
     @Column(name = "CUSTOMER_ID")
-    private long customerId;
+    private Long customerId;
     @Column(name = "RESTAURANT_ID")
-    private long restaurantId;
+    private Long restaurantId;
     @Column(name = "ORDER_TIME")
     private Timestamp orderTime;
     @Column(name = "ESTIMATED_DELIVERY_TIME")
@@ -40,8 +40,8 @@ public class Order {
     @Column(name = "UPDATED_AT")
     private Timestamp updatedAt;
     @Column(name = "CREATED_BY")
-    private long createdBy;
+    private Long createdBy;
     @Column(name = "UPDATED_BY")
-    private long updatedBy;
+    private Long updatedBy;
 
 }

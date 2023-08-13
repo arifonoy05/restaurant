@@ -4,42 +4,41 @@ import InputText from '../../../components/Input/InputText'
 import ToogleInput from "../../../components/Input/ToogleInput"
 import ErrorText from '../../../components/Typography/ErrorText'
 import { showNotification } from "../../common/headerSlice"
-import { editRestaurant } from "../restaurantSlice"
+import { addRestaurant } from "../restaurantSlice"
 
-function EditRestaurantModalBody({ closeModal, extraObject }) {
+let INITIAL_RESTAURANT_OBJ = {
+    "name": "",
+    "foundingYear": "",
+    "email": "",
+    "websiteUrl": "",
+    "phone": "",
+    "openingHours": "",
+    "capacity": "",
+    "open": false,
+    "rating": "",
+    "address": "",
+    "city": ""
+}
+
+const AddNewRestaurantModalBody = ({ closeModal }) => {
     const dispatch = useDispatch()
     const [loading, setLoading] = useState(false)
     const [errorMessage, setErrorMessage] = useState("")
-    const [restaurantData, setRestaurantData] = useState(extraObject)
+    const [restaurantData, setRestaurantData] = useState(INITIAL_RESTAURANT_OBJ)
 
-    const updateRestaurant = () => {
-
-        let newRestaurantObj = {
-            "id": restaurantData.id,
-            "name": restaurantData.name,
-            "foundingYear": restaurantData.foundingYear,
-            "email": restaurantData.email,
-            "websiteUrl": restaurantData.websiteUrl,
-            "phone": restaurantData.phone,
-            "openingHours": restaurantData.openingHours,
-            "capacity": restaurantData.capacity,
-            "open": restaurantData.open ? true : false,
-            "rating": restaurantData.rating,
-            "address": restaurantData.address,
-            "city": restaurantData.city
-        }
-
-        fetch('http://localhost:8080/api/restaurants/update', {
-            method: 'PATCH',
+    const addNewRestaurant = () => {
+        fetch('http://localhost:8080/api/restaurants/add', {
+            method: 'POST',
             headers: {
                 'Accept': 'application/json, text/plain, */*',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(newRestaurantObj)
+            body: JSON.stringify(restaurantData)
         }).then(res => res.json())
             .then(res => {
-                dispatch(editRestaurant({ newRestaurantObj }))
-                dispatch(showNotification({ message: "Restaurant Updated!", status: 1 }))
+                console.log(res, restaurantData);
+                dispatch(addRestaurant({ restaurantData }))
+                dispatch(showNotification({ message: "Restaurant Added!", status: 1 }))
             });
 
         closeModal()
@@ -67,10 +66,10 @@ function EditRestaurantModalBody({ closeModal, extraObject }) {
             <ErrorText styleClass="mt-16">{errorMessage}</ErrorText>
             <div className="modal-action">
                 <button className="btn btn-ghost" onClick={() => closeModal()}>Cancel</button>
-                <button className="btn btn-primary px-6" onClick={() => updateRestaurant()}>Update</button>
+                <button className="btn btn-primary px-6" onClick={() => addNewRestaurant()}>Save</button>
             </div>
         </>
     )
 }
 
-export default EditRestaurantModalBody
+export default AddNewRestaurantModalBody

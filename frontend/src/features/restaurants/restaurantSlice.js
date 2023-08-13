@@ -1,8 +1,9 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
-export const getRestaurantDetails = createAsyncThunk('http://localhost:8080/api/restaurants/', async () => {
-    const response = await axios.get('', {})
+export const getRestaurantContent = createAsyncThunk('http://localhost:8080/api/restaurants/list', async () => {
+    const response = await axios.get('http://localhost:8080/api/restaurants/list', {})
+    console.log(response);
     return response.data;
 })
 
@@ -13,6 +14,10 @@ export const restaurantSlice = createSlice({
         restaurant: []
     },
     reducers: {
+        addRestaurant: (state, action) => {
+            let { newrestaurantObj } = action.payload
+            state.restaurant = [...state.restaurant, newrestaurantObj]
+        },
         editRestaurant: (state, action) => {
             let { newrestaurantObj } = action.payload
             state.restaurant = [...state.restaurant, newrestaurantObj]
@@ -24,19 +29,19 @@ export const restaurantSlice = createSlice({
     },
 
     extraReducers: {
-        [getRestaurantDetails.pending]: state => {
+        [getRestaurantContent.pending]: state => {
             state.isLoading = true
         },
-        [getRestaurantDetails.fulfilled]: (state, action) => {
+        [getRestaurantContent.fulfilled]: (state, action) => {
             state.leads = action.payload.data
             state.isLoading = false
         },
-        [getRestaurantDetails.rejected]: state => {
+        [getRestaurantContent.rejected]: state => {
             state.isLoading = false
         },
     }
 })
 
-export const { editRestaurant, deleteRestaurant } = restaurantSlice.actions;
+export const { addRestaurant, editRestaurant, deleteRestaurant } = restaurantSlice.actions;
 
 export default restaurantSlice.reducer;

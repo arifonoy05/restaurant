@@ -3,13 +3,10 @@ package com.project.restaurant.service;
 import com.project.restaurant.dto.RestaurantDTO;
 import com.project.restaurant.entity.Restaurant;
 import com.project.restaurant.respository.RestaurantRepository;
-import com.project.restaurant.util.enums.CommonResponse;
 import lombok.RequiredArgsConstructor;
-import org.apache.catalina.mapper.Mapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;

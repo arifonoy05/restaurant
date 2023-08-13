@@ -1,4 +1,4 @@
-package com.project.restaurant.util.enums;
+package com.project.restaurant.util;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
