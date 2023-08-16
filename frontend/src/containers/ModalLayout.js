@@ -2,10 +2,8 @@ import { useEffect } from 'react'
 import { MODAL_BODY_TYPES, CONFIRMATION_MODAL_CLOSE_TYPES } from '../utils/globalConstantUtil'
 import { useSelector, useDispatch } from 'react-redux'
 import { closeModal } from '../features/common/modalSlice'
-import AddLeadModalBody from '../features/leads/components/AddLeadModalBody'
 import AddNewRestaurantModalBody from '../features/restaurants/components/AddNewRestaurantModalBody'
 import EditRestaurantModalBody from '../features/restaurants/components/EditRestaurantModalBody'
-import ConfirmationModalBody from '../features/common/components/ConfirmationModalBody'
 import DeleteRestaurantModalBody from '../features/restaurants/components/DeleteRestaurantModalBody'
 import AddNewFoodCategoryModal from '../features/foodCategory/components/AddNewFoodCategoryModal'
 import DeleteFoodCategoryModal from '../features/foodCategory/components/DeleteFoodCategoryModal'
@@ -35,10 +33,8 @@ function ModalLayout() {
                     {/* Loading modal body according to different modal type */}
                     {
                         {
-                            [MODAL_BODY_TYPES.LEAD_ADD_NEW]: <AddLeadModalBody closeModal={close} extraObject={extraObject} />,
                             [MODAL_BODY_TYPES.RESTAURANT_EDIT]: <EditRestaurantModalBody closeModal={close} extraObject={extraObject} />,
                             [MODAL_BODY_TYPES.RESTAURANT_ADD]: <AddNewRestaurantModalBody closeModal={close} extraObject={extraObject} />,
-                            [MODAL_BODY_TYPES.CONFIRMATION]: <ConfirmationModalBody extraObject={extraObject} closeModal={close} />,
                             [CONFIRMATION_MODAL_CLOSE_TYPES.RESTAURANT_DELETE]: <DeleteRestaurantModalBody extraObject={extraObject} closeModal={close} />,
 
                             [MODAL_BODY_TYPES.FOOD_CATEGORY_ADD]: <AddNewFoodCategoryModal extraObject={extraObject} closeModal={close} />,
