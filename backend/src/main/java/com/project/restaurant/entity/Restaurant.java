@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
+import java.util.Set;
 
 @Table(name = "RESTAURANTS")
 @Entity
@@ -49,4 +50,6 @@ public class Restaurant {
     private Long createdBy;
     @Column(name = "UPDATED_BY")
     private Long updatedBy;
+
+
 }

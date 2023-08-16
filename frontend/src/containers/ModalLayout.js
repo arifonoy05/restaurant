@@ -8,6 +8,8 @@ import EditRestaurantModalBody from '../features/restaurants/components/EditRest
 import ConfirmationModalBody from '../features/common/components/ConfirmationModalBody'
 import DeleteRestaurantModalBody from '../features/restaurants/components/DeleteRestaurantModalBody'
 import AddNewFoodCategoryModal from '../features/foodCategory/components/AddNewFoodCategoryModal'
+import DeleteFoodCategoryModal from '../features/foodCategory/components/DeleteFoodCategoryModal'
+import EditFoodCategoryModal from '../features/foodCategory/components/EditFoodCategoryModal'
 
 
 function ModalLayout() {
@@ -40,8 +42,8 @@ function ModalLayout() {
                             [CONFIRMATION_MODAL_CLOSE_TYPES.RESTAURANT_DELETE]: <DeleteRestaurantModalBody extraObject={extraObject} closeModal={close} />,
 
                             [MODAL_BODY_TYPES.FOOD_CATEGORY_ADD]: <AddNewFoodCategoryModal extraObject={extraObject} closeModal={close} />,
-                            [MODAL_BODY_TYPES.FOOD_CATEGORY_EDIT]: <DeleteRestaurantModalBody extraObject={extraObject} closeModal={close} />,
-                            [CONFIRMATION_MODAL_CLOSE_TYPES.FOOD_CATEGORY_DELETE]: <DeleteRestaurantModalBody extraObject={extraObject} closeModal={close} />,
+                            [MODAL_BODY_TYPES.FOOD_CATEGORY_EDIT]: <EditFoodCategoryModal extraObject={extraObject} closeModal={close} />,
+                            [CONFIRMATION_MODAL_CLOSE_TYPES.FOOD_CATEGORY_DELETE]: <DeleteFoodCategoryModal extraObject={extraObject} closeModal={close} />,
 
                             [MODAL_BODY_TYPES.DEFAULT]: <div></div>
                         }[bodyType]

@@ -36,7 +36,8 @@ function EditRestaurantModalBody({ closeModal, extraObject }) {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(newRestaurantObj)
-        }).then(res => res.json())
+        })
+            .then(res => res.json())
             .then(res => {
                 dispatch(editRestaurant({ newRestaurantObj }))
                 dispatch(showNotification({ message: "Restaurant Updated!", status: 1 }))

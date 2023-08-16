@@ -1,5 +1,6 @@
 package com.project.restaurant.dto;
 
+import com.project.restaurant.entity.Restaurant;
 import jakarta.annotation.Nullable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,4 +14,5 @@ public class FoodCategoryDTO {
     private long id;
     private String description;
     private String name;
+    private Restaurant restaurant;
 }

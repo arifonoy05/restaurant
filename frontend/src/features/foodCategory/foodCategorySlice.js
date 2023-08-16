@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
-export const getFoodCategoryContent = createAsyncThunk('http://localhost:8080/api/food-category/list', async () => {
+export const getFoodCategoryContent = createAsyncThunk('food-category/list', async () => {
     const response = await axios.get('http://localhost:8080/api/food-category/list', {})
     return response.data;
 })
@@ -16,9 +16,12 @@ export const foodCategorySlice = createSlice({
     reducers: {
         addFoodCategory: (state, action) => {
             let { newFoodCategoryObj } = action.payload
-            state.foodCategory = [...state.leads, newFoodCategoryObj]
+            state.foodCategory = [...state.foodCategory, newFoodCategoryObj]
         },
-
+        editFoodCategory: (state, action) => {
+            let { newFoodCategoryObj } = action.payload
+            state.foodCategory = [...state.foodCategory, newFoodCategoryObj]
+        },
         deleteFoodCategory: (state, action) => {
             let { index } = action.payload
             state.foodCategory.splice(index, 1)
@@ -30,7 +33,7 @@ export const foodCategorySlice = createSlice({
             state.isLoading = true
         },
         [getFoodCategoryContent.fulfilled]: (state, action) => {
-            state.leads = action.payload.data
+            state.foodCategory = action.payload.data
             state.isLoading = false
         },
         [getFoodCategoryContent.rejected]: state => {
@@ -39,6 +42,6 @@ export const foodCategorySlice = createSlice({
     }
 })
 
-export const { addFoodCategory, deleteFoodCategory } = foodCategorySlice.actions
+export const { addFoodCategory, editFoodCategory, deleteFoodCategory } = foodCategorySlice.actions
 
 export default foodCategorySlice.reducer

@@ -1,11 +1,15 @@
 package com.project.restaurant.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.sql.Timestamp;
+import java.util.Set;
 
 @Table(name = "FOOD_CATEGORIES")
 @Entity
@@ -17,8 +21,6 @@ public class FoodCategory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private Long id;
-    @Column(name = "RESTAURANT_ID")
-    private Long restaurantId;
     @Column(name = "NAME")
     private String name;
     @Column(name = "DESCRIPTION")
@@ -31,4 +33,11 @@ public class FoodCategory {
     private Long createdBy;
     @Column(name = "UPDATED_BY")
     private Long updatedBy;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "RESTAURANT_ID", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+    private Restaurant restaurant;
+
 }

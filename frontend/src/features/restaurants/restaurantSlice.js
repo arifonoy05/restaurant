@@ -1,11 +1,12 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
-export const getRestaurantContent = createAsyncThunk('http://localhost:8080/api/restaurants/list', async () => {
-    const response = await axios.get('http://localhost:8080/api/restaurants/list', {})
-    console.log(response);
-    return response.data;
-})
+// export const getRestaurants = createAsyncThunk('restaurant/get', async () => {
+//     const data = await fetch('http://localhost:8080/api/restaurants/list');
+//     const result = data.data;
+//     console.log(data);
+//     return result;
+// })
 
 export const restaurantSlice = createSlice({
     name: 'restaurant',
@@ -14,6 +15,9 @@ export const restaurantSlice = createSlice({
         restaurant: []
     },
     reducers: {
+        getRestaurants: (state, action) => {
+            state.restaurant = action.payload
+        },
         addRestaurant: (state, action) => {
             let { newrestaurantObj } = action.payload
             state.restaurant = [...state.restaurant, newrestaurantObj]
@@ -28,20 +32,37 @@ export const restaurantSlice = createSlice({
         }
     },
 
-    extraReducers: {
-        [getRestaurantContent.pending]: state => {
-            state.isLoading = true
-        },
-        [getRestaurantContent.fulfilled]: (state, action) => {
-            state.leads = action.payload.data
-            state.isLoading = false
-        },
-        [getRestaurantContent.rejected]: state => {
-            state.isLoading = false
-        },
-    }
+    // extraReducers: {
+    //     [getRestaurantsApi.pending]: state => {
+    //         state.isLoading = true
+    //     },
+    //     [getRestaurantsApi.fulfilled]: (state, action) => {
+    //         state.restaurant = action.payload
+    //         state.isLoading = false
+    //     },
+    //     [getRestaurantsApi.rejected]: state => {
+    //         state.isLoading = false
+    //     },
+    // }
 })
 
-export const { addRestaurant, editRestaurant, deleteRestaurant } = restaurantSlice.actions;
+
+
+export const { getRestaurants, addRestaurant, editRestaurant, deleteRestaurant } = restaurantSlice.actions;
 
 export default restaurantSlice.reducer;
+
+
+export function getRestaurantsApi() {
+    return async function getRestaurantsThunk(dispatch, getState) {
+        const data = await fetch('http://localhost:8080/api/restaurants/list');
+        const result = data.json;
+        console.log(data);
+        // dispatch(getRestaurants(result))
+
+        // const response = await axios.get('http://localhost:8080/api/restaurants/list', {})
+        // const data = response.data;
+        // console.log(data);
+        dispatch(getRestaurants(data))
+    }
+}

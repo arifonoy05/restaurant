@@ -1,5 +1,4 @@
-import moment from "moment"
-import { useEffect } from "react"
+import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import TitleCard from "../../components/Cards/TitleCard"
 import { openModal } from "../common/modalSlice"
@@ -24,27 +23,52 @@ const TopSideButtons = () => {
 }
 
 function FoodCategory() {
+    const [foodCategoryData, setFoodCategoryData] = useState([]);
     const { foodCategory } = useSelector(state => state.foodCategory)
     const dispatch = useDispatch()
 
+    function callYourAPI() {
+        fetch('http://localhost:8080/api/food-category/list')
+            .then(response => {
+                return response.json()
+            })
+            .then(data => {
+                setFoodCategoryData(data);
+                console.log(data);
+            })
+    };
+
     useEffect(() => {
-        dispatch(getFoodCategoryContent())
+        callYourAPI()
+        // dispatch(getFoodCategoryContent())
     }, [])
 
+    const DisplayData = foodCategoryData.map((l, k) => {
+        return (
+            <tr key={k}>
+                <td>{l.name}</td>
+                <td>{l.description}</td>
+                <td>
+                    <div className="join join-horizontal lg:join-horizontal">
+                        <button className="btn btn-sm btn-primary join-item" onClick={() => editFoodCategory(l)}> Edit</button>
+                        <button className="btn btn-sm btn-danger join-item" onClick={() => deleteFoodCategory(k)}> Delete</button>
+                    </div>
+                </td>
+            </tr>
+        )
+    })
 
-
-    const getDummyStatus = (index) => {
-        if (index % 5 === 0) return <div className="badge">Not Interested</div>
-        else if (index % 5 === 1) return <div className="badge badge-primary">In Progress</div>
-        else if (index % 5 === 2) return <div className="badge badge-secondary">Sold</div>
-        else if (index % 5 === 3) return <div className="badge badge-accent">Need Followup</div>
-        else return <div className="badge badge-ghost">Open</div>
+    const editFoodCategory = (index) => {
+        dispatch(openModal({
+            title: "Edit FoodCategory", bodyType: MODAL_BODY_TYPES.FOOD_CATEGORY_EDIT,
+            extraObject: index
+        }))
     }
 
-    const deleteCurrentLead = (index) => {
+    const deleteFoodCategory = (index) => {
         dispatch(openModal({
-            title: "Confirmation", bodyType: MODAL_BODY_TYPES.CONFIRMATION,
-            extraObject: { message: `Are you sure you want to delete this lead?`, type: CONFIRMATION_MODAL_CLOSE_TYPES.LEAD_DELETE, index }
+            title: "Confirmation", bodyType: CONFIRMATION_MODAL_CLOSE_TYPES.FOOD_CATEGORY_DELETE,
+            extraObject: { message: `Are you sure you want to delete this FoodCategory?`, type: CONFIRMATION_MODAL_CLOSE_TYPES.FOOD_CATEGORY_DELETE, index }
         }))
     }
 
@@ -54,45 +78,31 @@ function FoodCategory() {
             <TitleCard title="Current foodCategory" topMargin="mt-2" TopSideButtons={<TopSideButtons />}>
 
                 {/* foodCategory List in table format loaded from slice after api call */}
-                <div className="overflow-x-auto w-full">
-                    <table className="table w-full">
+                <div className="overflow-x-auto">
+                    <table className="table min-w-full">
                         <thead>
                             <tr>
                                 <th>Name</th>
-                                <th>Email Id</th>
-                                <th>Created At</th>
-                                <th>Status</th>
-                                <th>Assigned To</th>
-                                <th></th>
+                                <th>Description</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {
+                            {DisplayData}
+                            {/* {
                                 foodCategory.map((l, k) => {
                                     return (
                                         <tr key={k}>
+                                            <td>{l.name}</td>
+                                            <td>{l.description}</td>
                                             <td>
-                                                <div className="flex items-center space-x-3">
-                                                    <div className="avatar">
-                                                        <div className="mask mask-squircle w-12 h-12">
-                                                            <img src={l.avatar} alt="Avatar" />
-                                                        </div>
-                                                    </div>
-                                                    <div>
-                                                        <div className="font-bold">{l.first_name}</div>
-                                                        <div className="text-sm opacity-50">{l.last_name}</div>
-                                                    </div>
-                                                </div>
+                                                <button className="btn btn-square btn-ghost" onClick={() => editFoodCategory(l)}> Edit</button>
+                                                <button className="btn btn-square btn-ghost" onClick={() => deleteFoodCategory(k)}><TrashIcon className="w-5" /></button>
                                             </td>
-                                            <td>{l.email}</td>
-                                            <td>{moment(new Date()).add(-5 * (k + 2), 'days').format("DD MMM YY")}</td>
-                                            <td>{getDummyStatus(k)}</td>
-                                            <td>{l.last_name}</td>
-                                            <td><button className="btn btn-square btn-ghost" onClick={() => deleteCurrentLead(k)}><TrashIcon className="w-5" /></button></td>
                                         </tr>
                                     )
                                 })
-                            }
+                            } */}
                         </tbody>
                     </table>
                 </div>

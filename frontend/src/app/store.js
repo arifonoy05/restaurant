@@ -5,6 +5,8 @@ import rightDrawerSlice from '../features/common/rightDrawerSlice'
 import leadsSlice from '../features/leads/leadSlice'
 import restaurantSlice from '../features/restaurants/restaurantSlice'
 import foodCategorySlice from '../features/foodCategory/foodCategorySlice'
+import dishSlice from '../features/dish/dishSlice'
+import orderSlice from '../features/order/orderSlice'
 
 const combinedReducer = {
   header: headerSlice,
@@ -12,7 +14,9 @@ const combinedReducer = {
   modal: modalSlice,
   lead: leadsSlice,
   restaurant: restaurantSlice,
-  foodCategory: foodCategorySlice
+  foodCategory: foodCategorySlice,
+  dish: dishSlice,
+  order: orderSlice
 }
 
 export default configureStore({

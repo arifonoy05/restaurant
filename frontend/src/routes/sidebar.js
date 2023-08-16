@@ -17,7 +17,8 @@ import InboxArrowDownIcon from '@heroicons/react/24/outline/InboxArrowDownIcon'
 import UsersIcon from '@heroicons/react/24/outline/UsersIcon'
 import KeyIcon from '@heroicons/react/24/outline/KeyIcon'
 import DocumentDuplicateIcon from '@heroicons/react/24/outline/DocumentDuplicateIcon'
-
+import Bars3Icon from '@heroicons/react/24/outline/Bars3Icon'
+import BanknotesIcon from '@heroicons/react/24/outline/BanknotesIcon'
 import BuildingOffice from '@heroicons/react/24/outline/BuildingOfficeIcon'
 
 const iconClasses = `h-6 w-6`
@@ -33,6 +34,16 @@ const routes = [
     path: '/food-category',
     icon: <BuildingOffice className={iconClasses} />,
     name: 'Food Category',
+  },
+  {
+    path: '/dish',
+    icon: <Bars3Icon className={iconClasses} />,
+    name: 'Dish',
+  },
+  {
+    path: '/order',
+    icon: <BanknotesIcon className={iconClasses} />,
+    name: 'Order',
   },
   {
     path: '/dashboard',

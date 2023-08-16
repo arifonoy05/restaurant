@@ -1,20 +1,20 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { CONFIRMATION_MODAL_CLOSE_TYPES, MODAL_CLOSE_TYPES } from '../../../utils/globalConstantUtil'
-import { deleteRestaurant } from '../../restaurants/restaurantSlice'
+import { deleteFoodCategory } from '../foodCategorySlice'
 import { showNotification } from "../../common/headerSlice"
+import { CONFIRMATION_MODAL_CLOSE_TYPES } from '../../../utils/globalConstantUtil'
 
-function DeleteRestaurantModalBody({ extraObject, closeModal }) {
+const DeleteFoodCategoryModal = ({ extraObject, closeModal }) => {
     const dispatch = useDispatch()
 
     const { message, type, _id, index } = extraObject
 
 
     const proceedWithYes = async () => {
-        if (type === CONFIRMATION_MODAL_CLOSE_TYPES.RESTAURANT_DELETE) {
+        if (type === CONFIRMATION_MODAL_CLOSE_TYPES.FOOD_CATEGORY_DELETE) {
             // positive response, call api or dispatch redux function
-            console.log(index);
+            dispatch(deleteFoodCategory({ index }))
 
-            fetch('http://localhost:8080/api/restaurants/delete', {
+            fetch('http://localhost:8080/api/food-category/delete', {
                 method: 'DELETE',
                 headers: {
                     'Accept': 'application/json, text/plain, */*',
@@ -23,10 +23,9 @@ function DeleteRestaurantModalBody({ extraObject, closeModal }) {
                 body: JSON.stringify(index)
             }).then(res => res.json())
                 .then(res => {
-                    dispatch(showNotification({ message: "Restaurant Deleted!", status: 1 }))
+                    dispatch(showNotification({ message: "Food Category Deleted!", status: 1 }))
                 });
 
-            dispatch(deleteRestaurant({ index }))
             closeModal()
         }
         closeModal()
@@ -49,4 +48,4 @@ function DeleteRestaurantModalBody({ extraObject, closeModal }) {
     )
 }
 
-export default DeleteRestaurantModalBody
+export default DeleteFoodCategoryModal
